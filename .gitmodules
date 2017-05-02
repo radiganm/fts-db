@@ -1,0 +1,6 @@
+[submodule "data/submodules/GDAX-Python"]
+	path = data/submodules/GDAX-Python
+	url = https://github.com/danpaquin/GDAX-Python.git
+[submodule "data/submodules/gdax-node"]
+	path = data/submodules/gdax-node
+	url = https://github.com/coinbase/gdax-node.git
