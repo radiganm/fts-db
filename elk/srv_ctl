@@ -73,13 +73,14 @@ EOT
   {
     cmd=$1; shift
     $cmd $*
-    service elasticsearch restart
+   #service elasticsearch restart
+   #read -p "starting" < "$(tty 0>&2)"
   }
 
   sigint()
   {
     (>&2 echo "shutting down")
-    /etc/init.d/nginx stop
+   #service elasticsearch stop
     kill 0
   }
 
@@ -88,7 +89,8 @@ EOT
   cmd=$1; shift
   case $cmd in
     elasticsearch)
-      /usr/share/elasticsearch/bin/elasticsearch $*
+      run
+      /usr/share/elasticsearch/bin/elasticsearch -Des.insecure.allow.root=true --network.host 0.0.0.0
       ;;
     util)
       util $*

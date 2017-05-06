@@ -5,6 +5,7 @@
 
   apt-get update -q
   apt-get install -y -q --allow-unauthenticated \
+    docker.io \
     gcc \
     make \
     curl \
@@ -45,5 +46,7 @@
   apt-get install -y -q --allow-unauthenticated java-8-openjdk
   apt-get install -y -q --allow-unauthenticated bazel
  #cp /usr/local/bazel/bin/bazel-complete.bash /etc/bash_completion.d/
+
+  sudo usermod -aG docker $(whoami)
 
 ## *EOF*

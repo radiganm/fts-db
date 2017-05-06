@@ -24,18 +24,15 @@
         openjdk-8-jre                \
         elasticsearch
         
-  RUN mkdir -p /usr/share/elasticsearch/config && cp /etc/elasticsearch/*.yml /usr/share/elasticsearch/config
-
   EXPOSE 9200
   EXPOSE 9300
   EXPOSE 5601
 
+  RUN (cd /usr/share/elasticsearch/; ln -fs /etc/elasticsearch/* .)
+  RUN mkdir -p /usr/share/elasticsearch/config
+
   ADD ./srv_ctl /usr/bin
   RUN chmod 775 /usr/bin/srv_ctl
   ENTRYPOINT ["/usr/bin/srv_ctl"]
-
-  RUN useradd -ms /bin/bash elk
-  ENV HOME /home/elk
-  USER elk
 
 ## *EOF*
