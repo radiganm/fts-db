@@ -1,0 +1,13 @@
+#!/usr/bin/env Rscript
+## plot-summary
+## Mac Radigan
+#
+  require('ascii', quiet=TRUE)
+  require('txtplot', quiet=TRUE)
+
+  d.df <- read.table(file='data/ethereum.csv', sep=',', header=TRUE)
+
+  txtplot(d.df$close)
+  summary(d.df)
+
+## *EOF
