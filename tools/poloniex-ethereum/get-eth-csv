@@ -1,0 +1,58 @@
+#!/usr/bin/env perl
+## get-eth-csv
+## Mac Radigan
+##
+## This script downloads historical ETH quote and formats as CSV.
+##
+## dependencies:
+##   PERL 5.020
+##   PERL JSON Module
+##
+## installers:
+##     apt-get install -y perl
+##     cpan install JSON
+
+  use warnings;
+  use strict;
+  use 5.020;
+  use experimental 'postderef';
+  use feature qw{ say };
+# use POSIX;
+  use Date::Format;
+  use LWP::Simple;
+  use JSON;
+  use Data::Dumper;
+
+  my $url = 'https://poloniex.com/public?command=returnChartData&currencyPair=BTC_ETH&start=1435699200&end=9999999999&period=14400';
+
+  my $json_raw = get $url;
+    die "Couldn't get $url" unless defined $json_raw;
+
+  my @json = @{ decode_json($json_raw) };
+
+# print(Dumper(@json));
+
+  my @skeys = (
+    'date',
+    'high',
+    'low',
+    'open',
+    'close',
+    'volume',
+    'quoteVolume',
+    'weightedAverage'
+  );
+
+  my $rec0 = $json[0];
+  my @header = grep ! ref $rec0->{$_}, @skeys;
+  say join ',', @header;
+
+  foreach my $prec (@json)
+  {
+    my %rec = %$prec;
+    $rec{'date'} = '"' . time2str("%Y-%m-%d %H:%M:%S", $rec{'date'}) . '"';
+    my @row = map { $rec{$_} } @skeys;
+    say join ',', @row;
+  }
+
+## *EOF*

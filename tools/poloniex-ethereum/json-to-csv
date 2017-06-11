@@ -1,0 +1,40 @@
+#!/usr/bin/env perl
+## json-to-csv
+## Mac Radigan
+##
+## This script downloads historical ETH quote and formats as CSV.
+##
+## dependencies:
+##   PERL 5.020
+##   PERL JSON Module
+##
+## installers:
+##     apt-get install -y perl
+##     cpan install JSON
+
+  use warnings;
+  use strict;
+  use 5.020;
+  use experimental 'postderef';
+  use feature qw{ say };
+  use JSON;
+  use Data::Dumper;
+
+  local $/;
+  my $stdin = <STDIN>;
+
+  my @json = @{ decode_json($stdin) };
+
+# print(Dumper(@json));
+
+  my $rec0 = $json[0];
+  my @header = grep ! ref $rec0->{$_}, sort keys %$rec0;
+  say join ',', @header;
+
+  foreach my $prec (@json)
+  {
+    my @row = map { $prec->{$_} } sort keys %$prec;
+    say join ',', @row;
+  }
+
+## *EOF*

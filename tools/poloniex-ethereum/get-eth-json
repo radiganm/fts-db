@@ -1,0 +1,19 @@
+#!/bin/bash
+## get-eth-json
+## Mac Radigan
+##
+## This script downloads historical ETH quote and formats as JSON.
+##
+## dependencies:
+##   BASH
+##   Curl
+##   JQ
+##
+## installers:
+##     apt-get install -y curl
+##     apt-get install -y jq
+
+  curl 'https://poloniex.com/public?command=returnChartData&currencyPair=BTC_ETH&start=1435699200&end=9999999999&period=14400' \
+  | jq -a -M '.'
+
+## *EOF*
