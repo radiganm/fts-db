@@ -9,9 +9,12 @@ name := ethereum
 all: json csv
 
 json:
-	./get-eth-$@ > ./$(name).$@
+	./get-eth-$@ > ./data/$(name).$@
 
 csv:
-	./get-eth-$@ > ./$(name).$@
+	./get-eth-$@ > ./data/$(name).$@
+
+txt:
+	./plot-summary > ./data/$(name).$@
 
 ## *EOF*

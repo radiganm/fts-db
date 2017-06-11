@@ -1,7 +1,7 @@
 #+TITLE: Poloniex Ethereum Tools
 #+AUTHOR: Mac Radigan
 
-#+BEGIN_JUSTIFYLEFT
+#+begin_src text
 
                               BTC_ETH
 
@@ -46,7 +46,7 @@
  3rd Qu.:0.022070  
  Max.   :0.118360  
 
-#+END_JUSTIFYLEFT
+#+end_src
 
 #+begin_src perl :tangle ./get-eth-csv
 
