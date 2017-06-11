@@ -2,7 +2,7 @@
 ## json-to-csv
 ## Mac Radigan
 ##
-## This script downloads historical ETH quote and formats as CSV.
+## This script formats JSON as CSV.
 ##
 ## dependencies:
 ##   PERL 5.020
